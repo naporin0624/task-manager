@@ -1,0 +1,3 @@
+export const MESSAGE_UPDATE = 'MESSAGE_UPDATE';
+export const TASK_UPDATE = "TASK_UPDATE"
+export const TASK_INSERT = "TASK_INSERT"
