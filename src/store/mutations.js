@@ -1,16 +1,19 @@
-import * as types from './mutation-types'; //mutation-typesをImportします
+import Vue from 'vue';
+import * as types from './mutation-types';
+
 import axios_t from './modules/axios-templates'
 const api_url = "http://localhost:5000"
+
 export const state = {
     message: 'Hello',
     taskData: [{
         id: 1,
         text: "今日はタスク管理表を作る",
-        checkbox: true
+        status: false
     }, {
         id: 2,
         text: "今日はVueの勉強も兼ねてやる",
-        checkbox: true
+        status: true
     }]
 }
 
@@ -24,10 +27,11 @@ export const mutations = {
     },
     [types.TASK_UPDATE](state, payload) {
         console.log("update")
+        payload.status = !payload.status
         let index = state.taskData.findIndex(item => {
             item.id == payload.id
         })
-        state.taskData.slice(index, 1, payload)
+        Vue.set(state.taskData, index, payload)
         console.log(state.taskData)
     }
 }

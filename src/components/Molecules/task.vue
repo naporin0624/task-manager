@@ -1,8 +1,12 @@
 <template>
   <div>
-    <div v-for="task in taskDataLocal" :key="task.id" class="text-xs-center">
-      <v-checkbox :label="task.text" v-model="task.checkbox" @click="changeChechbox(task)"></v-checkbox>
-    </div>
+    <v-checkbox
+      v-for="task in taskData"
+      :key="task.id"
+      :label="task.text"
+      :input-value="task.status"
+      @change="updateTaskStatus(task)"
+    ></v-checkbox>
   </div>
 </template>
 
@@ -15,14 +19,12 @@ export default {
   data() {
     return {};
   },
-  methods: {},
-  computed: {
-    taskDataLocal: {
-      get() {
-        return this.taskData;
-      },
-      set(val) {}
+  methods: {
+    updateTaskStatus(task) {
+      console.log("pushChange id: " + task.id);
+      this.$emit("changeStatusEvent", task);
     }
-  }
+  },
+  computed: {}
 };
 </script>
