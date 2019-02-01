@@ -8,30 +8,33 @@ export const state = {
     message: 'Hello',
     taskData: [{
         id: 1,
+        createDate: (new Date("2019/1/31").getTime() / 1000) + 60 * 60 * 9,
+        finishDate: null,
         text: "今日はタスク管理表を作る",
-        status: false
-    }, {
-        id: 2,
-        text: "今日はVueの勉強も兼ねてやる",
-        status: true
-    }]
+        status: false,
+    }, ]
 }
 
 export const mutations = {
     [types.TASK_INSERT](state, payload) {
-        let maxId = Math.max.apply(state.taskData(item => {
+        let maxId = Math.max.apply(null, state.taskData.map(item => {
             return item.id
         }))
-        payload.id = maxId
+        payload.id = maxId + 1
+        console.log(maxId)
+        payload.createDate = new Date().getTime() / 1000 + 60 * 60 * 9
+        payload.status = false
+        payload.finishDate = null
         state.taskData.push(payload)
     },
     [types.TASK_UPDATE](state, payload) {
-        console.log("update")
         payload.status = !payload.status
         let index = state.taskData.findIndex(item => {
-            item.id == payload.id
+            item.id === payload.id
         })
+        if (payload.status) payload.finishDate = (new Date().getTime() / 1000) + 60 * 60 * 9
+        else payload.finishDate = null
+
         Vue.set(state.taskData, index, payload)
-        console.log(state.taskData)
-    }
+    },
 }

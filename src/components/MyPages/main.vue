@@ -1,9 +1,11 @@
 <template>
   <div>
     <header-component></header-component>
+    <v-card-text style="height: 60px;"></v-card-text>
     <transition>
       <contents-component :nav="nav"></contents-component>
     </transition>
+    <v-card-text style="height: 60px;"></v-card-text>
     <footer-component :footerValue="footerShowFlag" :nav.sync="nav"></footer-component>
   </div>
 </template>
@@ -44,12 +46,10 @@ export default {
 
 
 <style scoped>
-.container {
-  /* width: 100%; */
-  /* margin-top: 10px; */
-  /* margin-bottom: 80px; */
+contets-component {
   height: auto;
   overflow: auto;
+  margin-top: 100px;
 }
 /* 1秒かけて透明度を遷移 */
 .v-enter-active,

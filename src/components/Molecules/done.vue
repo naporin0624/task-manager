@@ -3,25 +3,14 @@
     <v-container grid-list-xs v-for="task in taskData" :key="task.id">
       <v-layout row wrap>
         <v-flex xs2>
-          <v-btn fab dark small color="green" @click="updateTaskStatus(task)">
-            <v-icon dark>done</v-icon>
+          <v-btn fab dark small color="blue" @click="updateTaskStatus(task)">
+            <v-icon dark>undo</v-icon>
           </v-btn>
         </v-flex>
         <v-flex xs10>
           <p>{{task.text}}</p>
         </v-flex>
       </v-layout>
-    </v-container>
-
-    <v-container text-xs-center class="input-task">
-      <v-text-field
-        append-outer-icon="send"
-        prepend-icon="description"
-        placeholder="タスクを入力"
-        clearable
-        v-model="taskText"
-        @click:append-outer="addTask"
-      ></v-text-field>
     </v-container>
   </div>
 </template>
@@ -41,10 +30,8 @@ export default {
   methods: {
     updateTaskStatus(task) {
       console.log("pushChange id: " + task.id);
-      if (!task.status) {
-        sanaAudio.donePlay();
-      }
       this.$emit("changeStatusEvent", task);
+      if (!task.status) sanaAudio.redoPlay();
     },
     timestamp2string(timestamp) {
       console.log(timestamp);

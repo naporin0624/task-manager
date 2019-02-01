@@ -6,6 +6,10 @@ import router from './router'
 import store from './store';
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
+var VueTouch = require('vue-touch')
+Vue.use(VueTouch, {
+    name: 'v-touch'
+})
 
 Vue.use(Vuetify)
 
@@ -17,5 +21,7 @@ new Vue({
     router,
     store,
     template: '<App/>',
-    components: { App }
+    components: {
+        App
+    }
 })

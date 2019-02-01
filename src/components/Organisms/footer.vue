@@ -1,26 +1,20 @@
 <template>
   <div>
-    <v-bottom-nav
-      :active.sync="navLocal"
-      :value="footerValue"
-      fixed
-      color="transparent"
-      height="70"
-    >
-      <v-btn color="teal" flat value="task">
+    <v-bottom-nav :active.sync="navLocal" :value="footerValue" fixed height="70">
+      <v-btn color="pink" flat value="task">
         <span>Task</span>
         <v-icon>description</v-icon>
       </v-btn>
 
-      <v-btn color="teal" flat value="done">
+      <v-btn color="pink" flat value="done">
         <span>Done</span>
         <v-icon>done</v-icon>
       </v-btn>
 
-      <v-btn color="teal" flat value="add">
+      <!-- <v-btn color="teal" flat value="add">
         <span>Add</span>
         <v-icon>add</v-icon>
-      </v-btn>
+      </v-btn>-->
     </v-bottom-nav>
   </div>
 </template>
