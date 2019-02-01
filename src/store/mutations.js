@@ -10,7 +10,7 @@ export const state = {
         id: 1,
         createDate: (new Date("2019/1/31").getTime() / 1000) + 60 * 60 * 9,
         finishDate: null,
-        text: "今日はタスク管理表を作る",
+        text: "横のボタンをクリックしてね",
         status: false,
     }, ]
 }
