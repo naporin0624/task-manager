@@ -13,7 +13,6 @@ import { REMAIN_TASK, DONE_TASK } from "../../store/getters-types.js";
 
 import taskcomponent from "../Molecules/task";
 import addcomponent from "../Organisms/add";
-// import donecomponent from "../Organisms/done";
 
 export default {
   name: "ContentConponent",
