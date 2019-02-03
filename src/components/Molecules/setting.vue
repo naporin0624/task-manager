@@ -1,6 +1,11 @@
 <template>
   <div>
     <p>そのうち設定できるようになる予定</p>
+    <p>
+      動きが怪しい時は一回アプリを削除してから
+      <a href="https://sana-task.herokuapp.com/#/">ブラウザ</a>
+      で開くとなおるかもしれません
+    </p>
     <a
       href="https://twitter.com/intent/tweet?screen_name=naporin24690&ref_src=twsrc%5Etfw"
       class="twitter-mention-button"
