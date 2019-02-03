@@ -23,6 +23,7 @@
         v-model="taskText"
         @click:append-outer="addTask"
         @keyup.enter="addTask"
+        roles
       ></v-text-field>
     </v-container>
   </div>
@@ -53,8 +54,10 @@ export default {
       return timestamp.toString(timestamp);
     },
     addTask() {
-      this.$emit("taskInsertEvent", this.taskText);
-      this.taskText = "";
+      if (this.taskText.length > 0 && this.taskText != "") {
+        this.$emit("taskInsertEvent", this.taskText);
+        this.taskText = "";
+      }
     }
   },
   computed: {}
