@@ -2,17 +2,9 @@ import Vue from 'vue';
 import * as types from './mutation-types';
 
 import axios_t from './modules/axios-templates'
-const api_url = "http://localhost:5000"
 
 export const state = {
-    message: 'Hello',
-    taskData: [{
-        id: 1,
-        createDate: (new Date("2019/1/31").getTime() / 1000) + 60 * 60 * 9,
-        finishDate: null,
-        text: "横のボタンをクリックしてね",
-        status: false,
-    }, ]
+    taskData: []
 }
 
 export const mutations = {
@@ -21,7 +13,6 @@ export const mutations = {
             return item.id
         }))
         payload.id = maxId + 1
-        console.log(maxId)
         payload.createDate = new Date().getTime() / 1000 + 60 * 60 * 9
         payload.status = false
         payload.finishDate = null

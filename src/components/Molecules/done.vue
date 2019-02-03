@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>完了タスク一覧</h1>
     <v-container grid-list-xs v-for="task in taskData" :key="task.id">
       <v-layout row wrap>
         <v-flex xs2>
@@ -33,18 +34,6 @@ export default {
       this.$emit("changeStatusEvent", task);
       if (!task.status) sanaAudio.redoPlay();
     },
-    timestamp2string(timestamp) {
-      console.log(timestamp);
-      let d = new Date(timestamp * 1000);
-      console.log(d);
-      let year = d.getFullYear();
-      let month = d.getMonth() + 1;
-      let day = d.getDate();
-      console.log(year);
-      console.log(month);
-      console.log(day);
-      return year + "-" + month + "-" + day;
-    },
     addTask() {
       this.$emit("taskInsertEvent", this.taskText);
       this.taskText = "";
@@ -62,4 +51,3 @@ p {
   padding: 0.4em;
 }
 </style>
-

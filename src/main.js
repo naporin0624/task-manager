@@ -7,12 +7,15 @@ import store from './store';
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 var VueTouch = require('vue-touch')
+    // import VueLocalStorage from 'vue-localstorage'
+
+
 Vue.use(VueTouch, {
     name: 'v-touch'
 })
 
 Vue.use(Vuetify)
-
+    // Vue.use(VueLocalStorage)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

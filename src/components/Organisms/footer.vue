@@ -10,11 +10,6 @@
         <span>Done</span>
         <v-icon>done</v-icon>
       </v-btn>
-
-      <!-- <v-btn color="teal" flat value="add">
-        <span>Add</span>
-        <v-icon>add</v-icon>
-      </v-btn>-->
     </v-bottom-nav>
   </div>
 </template>

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>タスク一覧</h1>
     <v-container grid-list-xs v-for="task in taskData" :key="task.id">
       <v-layout row wrap>
         <v-flex xs2>
@@ -21,6 +22,7 @@
         clearable
         v-model="taskText"
         @click:append-outer="addTask"
+        @keyup.enter="addTask"
       ></v-text-field>
     </v-container>
   </div>
@@ -28,6 +30,7 @@
 
 <script>
 import sanaAudio from "../modules/audio-modules.js";
+import timestamp from "../modules/timestamp.js";
 export default {
   name: "TaskWindow",
   props: {
@@ -47,16 +50,7 @@ export default {
       this.$emit("changeStatusEvent", task);
     },
     timestamp2string(timestamp) {
-      console.log(timestamp);
-      let d = new Date(timestamp * 1000);
-      console.log(d);
-      let year = d.getFullYear();
-      let month = d.getMonth() + 1;
-      let day = d.getDate();
-      console.log(year);
-      console.log(month);
-      console.log(day);
-      return year + "-" + month + "-" + day;
+      return timestamp.toString(timestamp);
     },
     addTask() {
       this.$emit("taskInsertEvent", this.taskText);

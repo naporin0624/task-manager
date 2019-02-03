@@ -8,11 +8,14 @@ import {
     state,
     mutations
 } from './mutations';
+import createPersistedState from "vuex-persistedstate";
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
     actions,
     getters,
     state,
-    mutations
+    mutations,
+    plugins: [createPersistedState()] // この行でvuexに「vuex-persistedstate」を追加
 });
