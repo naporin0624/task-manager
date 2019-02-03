@@ -12,7 +12,7 @@ export const state = {
 export const mutations = {
     [types.TASK_INSERT](state, payload) {
         let maxId = 0;
-        if (taskData.length > 0) {
+        if (state.taskData.length > 0) {
             maxId = Math.max.apply(null, state.taskData.map(item => {
                 return item.id
             }))
