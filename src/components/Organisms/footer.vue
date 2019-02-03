@@ -10,6 +10,16 @@
         <span>Done</span>
         <v-icon>done</v-icon>
       </v-btn>
+
+      <v-btn color="pink" flat value="delete">
+        <span>delete</span>
+        <v-icon>clear</v-icon>
+      </v-btn>
+
+      <v-btn color="pink" flat value="setting">
+        <span>setting</span>
+        <v-icon>build</v-icon>
+      </v-btn>
     </v-bottom-nav>
   </div>
 </template>

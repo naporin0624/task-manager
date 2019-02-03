@@ -1,11 +1,11 @@
 <template>
   <div>
-    <h1>完了タスク一覧</h1>
+    <h1>タスクを削除</h1>
     <v-container grid-list-xs v-for="task in taskData" :key="task.id">
       <v-layout row wrap>
         <v-flex xs2>
-          <v-btn fab dark small color="blue" @click="updateTaskStatus(task)">
-            <v-icon dark>undo</v-icon>
+          <v-btn fab dark small color="red" @click="deleteTask(task)">
+            <v-icon dark>clear</v-icon>
           </v-btn>
         </v-flex>
         <v-flex xs10>
@@ -19,7 +19,7 @@
 <script>
 import sanaAudio from "../modules/audio-modules.js";
 export default {
-  name: "DoneWindow",
+  name: "DeleteWindow",
   props: {
     taskData: Array
   },
@@ -29,10 +29,10 @@ export default {
     };
   },
   methods: {
-    updateTaskStatus(task) {
+    deleteTask(task) {
       console.log("pushChange id: " + task.id);
-      this.$emit("changeStatusEvent", task);
-      if (!task.status) sanaAudio.redoPlay();
+      this.$emit("deleteTaskEvent", task);
+      // if (!task.status) sanaAudio.redoPlay();
     }
   },
   computed: {}

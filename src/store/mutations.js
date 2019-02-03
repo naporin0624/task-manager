@@ -4,14 +4,19 @@ import * as types from './mutation-types';
 import axios_t from './modules/axios-templates'
 
 export const state = {
-    taskData: []
+    taskData: [],
+    doneAudioList: [],
+    redoAudioList: [],
 }
 
 export const mutations = {
     [types.TASK_INSERT](state, payload) {
-        let maxId = Math.max.apply(null, state.taskData.map(item => {
-            return item.id
-        }))
+        let maxId = 0;
+        if (taskData.length > 0) {
+            maxId = Math.max.apply(null, state.taskData.map(item => {
+                return item.id
+            }))
+        }
         payload.id = maxId + 1
         payload.createDate = new Date().getTime() / 1000 + 60 * 60 * 9
         payload.status = false
@@ -28,4 +33,10 @@ export const mutations = {
 
         Vue.set(state.taskData, index, payload)
     },
+    [types.TASK_DELETE](state, payload) {
+        let index = state.taskData.findIndex(item => {
+            item.id === payload.id
+        })
+        state.taskData.splice(index, 1)
+    }
 }

@@ -23,7 +23,6 @@
         v-model="taskText"
         @click:append-outer="addTask"
         @keyup.enter="addTask"
-        roles
       ></v-text-field>
     </v-container>
   </div>
