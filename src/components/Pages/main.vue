@@ -1,10 +1,8 @@
 <template>
   <div>
     <header-component></header-component>
-    <v-card-text style="height: 60px;"></v-card-text>
-    <transition>
-      <contents-component :nav="nav"></contents-component>
-    </transition>
+    <v-card-text style="height: 10vh;"></v-card-text>
+    <contents-component :nav="nav"></contents-component>
     <v-card-text style="height: 60px;"></v-card-text>
     <footer-component :footerValue="footerShowFlag" :nav.sync="nav"></footer-component>
   </div>
@@ -36,7 +34,6 @@ export default {
   },
   methods: {
     addClick() {
-      console.log("addClick");
       this.textdialog = !this.textdialog;
       console.log(this.textdialog);
     }
@@ -46,6 +43,9 @@ export default {
 
 
 <style scoped>
+v-card {
+  height: 60px;
+}
 contets-component {
   height: auto;
   overflow: auto;

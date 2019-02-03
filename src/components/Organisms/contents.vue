@@ -47,7 +47,6 @@ export default {
       TASK_DELETE
     }),
     checkboxEvent(task) {
-      console.log("checkboxEvent");
       this.TASK_UPDATE(task);
     },
     taskInsert(taskText) {
