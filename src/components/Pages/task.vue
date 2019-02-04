@@ -21,6 +21,7 @@
         placeholder="タスクを入力"
         clearable
         v-model="taskText"
+        @input="enterFlag=0"
         @click:append-outer="addTask"
         @keyup.enter="addTask"
       ></v-text-field>
@@ -31,33 +32,48 @@
 <script>
 import sanaAudio from "../modules/audio-modules.js";
 import timestamp from "../modules/timestamp.js";
+import device from "../modules/device.js";
+import { mapMutations, mapGetters } from "vuex";
+import { TASK_INSERT, TASK_UPDATE } from "../../store/mutation-types.js";
+import { REMAIN_TASK } from "../../store/getters-types.js";
+
 export default {
-  name: "TaskWindow",
-  props: {
-    taskData: Array
-  },
+  name: "taskPage",
   data() {
     return {
-      taskText: ""
+      taskText: "",
+      enterFlag: 0
     };
   },
   methods: {
+    ...mapMutations({ TASK_INSERT, TASK_UPDATE }),
     updateTaskStatus(task) {
       console.log("pushChange id: " + task.id);
       if (!task.status) sanaAudio.donePlay();
-      this.$emit("changeStatusEvent", task.id);
+      this.TASK_UPDATE({ id: task.id });
     },
     timestamp2string(timestamp) {
       return timestamp.toString(timestamp);
     },
     addTask() {
       if (this.taskText.length > 0 && this.taskText != "") {
-        this.$emit("taskInsertEvent", this.taskText);
-        this.taskText = "";
+        if (device.isPC()) {
+          this.enterFlag += 1;
+          if (this.enterFlag > 1) {
+            this.TASK_INSERT({ text: this.taskText });
+            this.taskText = "";
+            this.enterFlag = 0;
+          }
+        } else {
+          this.TASK_INSERT({ text: this.taskText });
+          this.taskText = "";
+        }
       }
     }
   },
-  computed: {}
+  computed: {
+    ...mapGetters({ taskData: REMAIN_TASK })
+  }
 };
 </script>
 
