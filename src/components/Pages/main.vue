@@ -50,13 +50,9 @@ export default {
 
 
 <style scoped>
-v-card {
-  height: 60px;
-}
 contets-component {
   height: auto;
   overflow: auto;
-  /* margin-top: 100px; */
 }
 /* 1秒かけて透明度を遷移 */
 .v-enter-active,
