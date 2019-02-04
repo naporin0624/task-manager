@@ -44,10 +44,8 @@ export default {
   methods: {
     updateTaskStatus(task) {
       console.log("pushChange id: " + task.id);
-      if (!task.status) {
-        sanaAudio.donePlay();
-      }
-      this.$emit("changeStatusEvent", task);
+      if (!task.status) sanaAudio.donePlay();
+      this.$emit("changeStatusEvent", task.id);
     },
     timestamp2string(timestamp) {
       return timestamp.toString(timestamp);

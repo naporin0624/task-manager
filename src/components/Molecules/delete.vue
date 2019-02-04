@@ -31,7 +31,7 @@ export default {
   methods: {
     deleteTask(task) {
       console.log("pushChange id: " + task.id);
-      this.$emit("deleteTaskEvent", task);
+      this.$emit("deleteTaskEvent", task.id);
       // if (!task.status) sanaAudio.redoPlay();
     }
   },

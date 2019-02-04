@@ -46,15 +46,14 @@ export default {
       TASK_UPDATE,
       TASK_DELETE
     }),
-    checkboxEvent(task) {
-      console.log("checkboxEvent");
-      this.TASK_UPDATE(task);
+    checkboxEvent(id) {
+      this.TASK_UPDATE({ id });
     },
     taskInsert(taskText) {
       this.TASK_INSERT({ text: taskText });
     },
-    taskDelete(task) {
-      this.TASK_DELETE(task);
+    taskDelete(id) {
+      this.TASK_DELETE({ id });
     }
   },
   computed: {

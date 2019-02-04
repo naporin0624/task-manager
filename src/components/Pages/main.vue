@@ -1,7 +1,7 @@
 <template>
   <div>
     <header-component></header-component>
-    <v-card-text style="height: 60px;"></v-card-text>
+    <v-card-text style="height: 10vh;"></v-card-text>
     <transition>
       <contents-component :nav="nav"></contents-component>
     </transition>
@@ -12,7 +12,7 @@
 
 <script>
 import { mapState, mapMutations } from "vuex";
-import { MESSAGE_UPDATE } from "../../store/mutation-types.js";
+import { CONTENTS_UPDATE } from "../../store/mutation-types.js";
 import axios_t from "../../store/modules/axios-templates.js";
 
 import headercomponent from "../Organisms/header";
@@ -23,7 +23,7 @@ export default {
   name: "StartPage",
   data() {
     return {
-      nav: "task",
+      // nav: "task",
       footerShowFlag: true,
       taskMessage: "",
       textdialog: false
@@ -35,10 +35,16 @@ export default {
     "contents-component": contentscomponent
   },
   methods: {
-    addClick() {
-      console.log("addClick");
-      this.textdialog = !this.textdialog;
-      console.log(this.textdialog);
+    ...mapMutations({ CONTENTS_UPDATE })
+  },
+  computed: {
+    nav: {
+      get() {
+        return this.$store.state.nowContent;
+      },
+      set(nav) {
+        this.CONTENTS_UPDATE(nav);
+      }
     }
   }
 };
@@ -49,7 +55,7 @@ export default {
 contets-component {
   height: auto;
   overflow: auto;
-  margin-top: 100px;
+  /* margin-top: 100px; */
 }
 /* 1秒かけて透明度を遷移 */
 .v-enter-active,

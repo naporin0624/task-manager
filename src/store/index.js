@@ -17,5 +17,5 @@ export default new Vuex.Store({
     getters,
     state,
     mutations,
-    plugins: [createPersistedState()] // この行でvuexに「vuex-persistedstate」を追加
+    // plugins: [createPersistedState()] // この行でvuexに「vuex-persistedstate」を追加
 });

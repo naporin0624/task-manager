@@ -4,6 +4,7 @@ import * as types from './mutation-types';
 import axios_t from './modules/axios-templates'
 
 export const state = {
+    nowContent: "task",
     taskData: [],
     doneAudioList: [],
     redoAudioList: [],
@@ -24,19 +25,24 @@ export const mutations = {
         state.taskData.push(payload)
     },
     [types.TASK_UPDATE](state, payload) {
-        payload.status = !payload.status
+        console.log(payload)
+            // payload.status = !payload.status
         let index = state.taskData.findIndex(item => {
-            item.id === payload.id
+            return item.id === payload.id
         })
-        if (payload.status) payload.finishDate = (new Date().getTime() / 1000) + 60 * 60 * 9
-        else payload.finishDate = null
-
-        Vue.set(state.taskData, index, payload)
+        let task = state.taskData[index]
+        task.status = !task.status
+        if (task.status) task.finishDate = (new Date().getTime() / 1000) + 60 * 60 * 9
+        else task.finishDate = null
+        Vue.set(state.taskData, index, task)
     },
     [types.TASK_DELETE](state, payload) {
         let index = state.taskData.findIndex(item => {
-            item.id === payload.id
+            return item.id === payload.id
         })
         state.taskData.splice(index, 1)
+    },
+    [types.CONTENTS_UPDATE](state, page) {
+        state.nowContent = page
     }
 }

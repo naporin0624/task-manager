@@ -31,7 +31,7 @@ export default {
   methods: {
     updateTaskStatus(task) {
       console.log("pushChange id: " + task.id);
-      this.$emit("changeStatusEvent", task);
+      this.$emit("changeStatusEvent", task.id);
       if (!task.status) sanaAudio.redoPlay();
     }
   },
