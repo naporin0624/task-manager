@@ -21,6 +21,7 @@
         placeholder="タスクを入力"
         clearable
         v-model="taskText"
+        @input="enterFlag=0"
         @click:append-outer="addTask"
         @keyup.enter="addTask"
       ></v-text-field>
@@ -31,6 +32,7 @@
 <script>
 import sanaAudio from "../modules/audio-modules.js";
 import timestamp from "../modules/timestamp.js";
+import device from "../modules/device.js";
 export default {
   name: "TaskWindow",
   props: {
@@ -38,12 +40,12 @@ export default {
   },
   data() {
     return {
-      taskText: ""
+      taskText: "",
+      enterFlag: 0
     };
   },
   methods: {
     updateTaskStatus(task) {
-      console.log("pushChange id: " + task.id);
       if (!task.status) sanaAudio.donePlay();
       this.$emit("changeStatusEvent", task.id);
     },
@@ -52,8 +54,16 @@ export default {
     },
     addTask() {
       if (this.taskText.length > 0 && this.taskText != "") {
-        this.$emit("taskInsertEvent", this.taskText);
-        this.taskText = "";
+        if (device.isPC()) {
+          this.enterFlag += 1;
+          if (this.enterFlag > 1) {
+            this.$emit("taskInsertEvent", this.taskText);
+            this.taskText = "";
+          }
+        } else {
+          this.$emit("taskInsertEvent", this.taskText);
+          this.taskText = "";
+        }
       }
     }
   },

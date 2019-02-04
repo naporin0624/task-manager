@@ -21,10 +21,7 @@ export default {
   name: "StartPage",
   data() {
     return {
-      // nav: "task",
-      footerShowFlag: true,
-      taskMessage: "",
-      textdialog: false
+      footerShowFlag: true
     };
   },
   components: {
@@ -53,15 +50,5 @@ export default {
 contets-component {
   height: auto;
   overflow: auto;
-}
-/* 1秒かけて透明度を遷移 */
-.v-enter-active,
-.v-leave-active {
-  transition: opacity 1s;
-}
-/* 見えなくなるときの透明度 */
-.v-enter,
-.v-leave-to {
-  opacity: 0;
 }
 </style>
