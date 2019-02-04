@@ -1,18 +1,41 @@
 <template>
   <div id="app">
-    <!-- <header>
-      <span>Vue.js PWA</span>
-    </header>-->
+    <header-component></header-component>
+    <v-card-text style="height: 10vh;"></v-card-text>
     <main>
-      <!-- <img src="./assets/logo.png" alt="Vue.js PWA"> -->
       <router-view></router-view>
     </main>
+    <v-card-text style="height: 60px;"></v-card-text>
+    <footer-component :footerValue="true" :nav.sync="nav"></footer-component>
   </div>
 </template>
 
 <script>
+import { mapState, mapMutations, mapGetters } from "vuex";
+import { CONTENTS_UPDATE } from "./store/mutation-types.js";
+
+import headerComponent from "./components/Organisms/header";
+import footerComponent from "./components/Organisms/footer";
+
 export default {
-  name: "app"
+  name: "app",
+  components: {
+    "header-component": headerComponent,
+    "footer-component": footerComponent
+  },
+  methods: {
+    ...mapMutations({ CONTENTS_UPDATE })
+  },
+  computed: {
+    nav: {
+      get() {
+        return this.$store.state.nowContent;
+      },
+      set(nav) {
+        this.CONTENTS_UPDATE(nav);
+      }
+    }
+  }
 };
 </script>
 

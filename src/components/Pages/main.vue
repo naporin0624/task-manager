@@ -1,10 +1,10 @@
 <template>
   <div>
-    <header-component></header-component>
+    <!-- <header-component></header-component> -->
     <v-card-text style="height: 10vh;"></v-card-text>
     <contents-component :nav="nav"></contents-component>
     <v-card-text style="height: 60px;"></v-card-text>
-    <footer-component :footerValue="footerShowFlag" :nav.sync="nav"></footer-component>
+    <!-- <footer-component :footerValue="footerShowFlag" :nav.sync="nav"></footer-component> -->
   </div>
 </template>
 

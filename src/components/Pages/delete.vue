@@ -18,11 +18,9 @@
 
 <script>
 import sanaAudio from "../modules/audio-modules.js";
+import { mapState } from "vuex";
 export default {
   name: "DeleteWindow",
-  props: {
-    taskData: Array
-  },
   data() {
     return {
       taskText: ""
@@ -31,11 +29,13 @@ export default {
   methods: {
     deleteTask(task) {
       console.log("pushChange id: " + task.id);
-      this.$emit("deleteTaskEvent", task.id);
+      // this.$emit("deleteTaskEvent", task.id);
       // if (!task.status) sanaAudio.redoPlay();
     }
   },
-  computed: {}
+  computed: {
+    ...mapState({ taskData: "taskData" })
+  }
 };
 </script>
 

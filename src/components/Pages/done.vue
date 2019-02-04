@@ -18,10 +18,13 @@
 
 <script>
 import sanaAudio from "../modules/audio-modules.js";
+import { mapMutations, mapGetters } from "vuex";
+import { DONE_TASK } from "../../store/getters-types.js";
+import { TASK_UPDATE } from "../../store/mutation-types.js";
 export default {
   name: "DoneWindow",
   props: {
-    taskData: Array
+    // taskData: Array
   },
   data() {
     return {
@@ -29,13 +32,17 @@ export default {
     };
   },
   methods: {
+    ...mapMutations({ TASK_UPDATE }),
     updateTaskStatus(task) {
-      console.log("pushChange id: " + task.id);
-      this.$emit("changeStatusEvent", task.id);
+      // console.log("pushChange id: " + task.id);
+      // this.$emit("changeStatusEvent", task.id);
       if (!task.status) sanaAudio.redoPlay();
+      this.TASK_UPDATE({ id: task.id });
     }
   },
-  computed: {}
+  computed: {
+    ...mapGetters({ taskData: DONE_TASK })
+  }
 };
 </script>
 
