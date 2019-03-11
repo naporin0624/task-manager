@@ -32,7 +32,7 @@
 <script>
 import sanaAudio from "../modules/audio-modules.js";
 import timestamp from "../modules/timestamp.js";
-import device from "../modules/device.js";
+// import device from "../modules/device.js";
 export default {
   name: "TaskWindow",
   props: {
@@ -54,16 +54,16 @@ export default {
     },
     addTask() {
       if (this.taskText.length > 0 && this.taskText != "") {
-        if (device.isPC()) {
-          this.enterFlag += 1;
-          if (this.enterFlag > 1) {
-            this.$emit("taskInsertEvent", this.taskText);
-            this.taskText = "";
-          }
-        } else {
-          this.$emit("taskInsertEvent", this.taskText);
-          this.taskText = "";
-        }
+        // if (device.isPC()) {
+        //   this.enterFlag += 1;
+        //   if (this.enterFlag > 1) {
+        //     this.$emit("taskInsertEvent", this.taskText);
+        //     this.taskText = "";
+        //   }
+        // } else {
+        this.$emit("taskInsertEvent", this.taskText);
+        this.taskText = "";
+        // }
       }
     }
   },

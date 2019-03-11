@@ -8,19 +8,25 @@ const doneUrl3 = 'https://www.natorisana.love/sounds/%E5%90%8D%E5%8F%96%E3%81%A8
 const doneList = [doneUrl1, doneUrl2, doneUrl3]
 const redoList = [redoUrl1, redoUrl2]
 
+const makeSanaBtnMakeURL = (btnName) => {
+  const baseURL = "https://www.natorisana.love/sounds/";
+  const extention = ".mp3";
+  return baseURL + btnName + extention;
+}
+
 export default {
-    donePlay: () => {
-        let doneIndex = Math.floor(Math.random() * doneList.length);
-        let doneUrl = doneList[doneIndex];
-        let audioElem = new Audio();
-        audioElem.src = doneUrl
-        audioElem.play()
-    },
-    redoPlay: () => {
-        let redoIndex = Math.floor(Math.random() * redoList.length);
-        let redoUrl = redoList[redoIndex];
-        let audioElem = new Audio();
-        audioElem.src = redoUrl
-        audioElem.play()
-    }
+  donePlay: () => {
+    let doneIndex = Math.floor(Math.random() * doneList.length);
+    let doneUrl = doneList[doneIndex];
+    let audioElem = new Audio();
+    audioElem.src = doneUrl
+    audioElem.play()
+  },
+  redoPlay: () => {
+    let redoIndex = Math.floor(Math.random() * redoList.length);
+    let redoUrl = redoList[redoIndex];
+    let audioElem = new Audio();
+    audioElem.src = redoUrl
+    audioElem.play()
+  }
 }
