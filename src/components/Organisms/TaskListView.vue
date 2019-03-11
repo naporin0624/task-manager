@@ -76,7 +76,7 @@ export default {
       console.log('event', key)
     },
     indexIncrement () {
-      this.btnIndex = (this.btnIndex + 1) % 3
+      this.btnIndex = (this.btnIndex + 1) % 4
       // const targetSize = this.viewContentList.length - 1
       // if (this.btnIndex == targetSize) {
       //   this.btnIndex = 0
