@@ -22,22 +22,28 @@ v-app
     flat
     app
   )
-    //- v-toolbar-side-icon(@click.stop='drawer = !drawer' v-if="!isMobile")
-    v-toolbar-title Application
+    v-toolbar-title タスク完了するところ見てて・・・
   
   v-content
+    task-list-view(v-if="isMobile")
     router-view
   
-  v-footer.pa-3(v-if="!isMobile")
+  v-card(height="32" v-if="!isMobile")
+  v-footer.pa-3(
+    v-if="!isMobile"
+    height="32"
+    fixed
+  )
     v-spacer
     div © {{ new Date().getFullYear() }}
   
+  v-card(height="56" v-if="isMobile")
   v-bottom-nav(
     v-if="isMobile"
-    :active.sync='bottomNav'
     :value="true"
-    color="transparent"
+    height="56"
     shift
+    fixed
   )
     v-btn(
       v-for="item in fetchBottomBtn"
@@ -52,12 +58,14 @@ v-app
 </template>
 
 <script>
+import TaskListView from '@/components/Organisms/TaskListView'
 export default {
-  name: "app",
+  name: 'app',
+  components:{
+    TaskListView
+  },
   data() {
     return {
-      bottomNav: "recent",
-      drawer: true,
       mobileChangeSize: this.$vuetify.sm,
       sideMenuList: [
         {
@@ -109,20 +117,51 @@ export default {
             name: "お知らせ"
           }
         ]
-      }
+      },
+      taskList: [
+        {
+          uid: this.generateUID(),
+          status: 0,
+          display: 'はじめのたすく'
+        }, {
+          uid: this.generateUID(),
+          status: 1,
+          display: '少し進んだたすく'
+        }, {
+          uid: this.generateUID(),
+          status: 2,
+          display: '終わったたすく'
+        }, {
+          uid: this.generateUID(),
+          status: 0,
+          display: 'ネストされたたすく',
+          child: {
+            uid: this.generateUID(),
+            status: 0,
+            display: 'ネストされたたすく',
+          }
+        }
+      ]
     };
   },
   computed: {
-    isMobile() {
+    isMobile () {
       return this.$vuetify.breakpoint.smAndDown;
     },
-    fetchSideMenu() {
+    fetchSideMenu () {
       const nowRoute = this.$router.history.current.name;
       return this.sideMenuList.home;
     },
-    fetchBottomBtn() {
+    fetchBottomBtn () {
       const nowRoute = this.$router.history.current.name;
       return this.bottomBtnList.home;
+    }
+  },
+  methods: {
+    generateUID () {
+      const uniqueDateString = new Date().getTime().toString(16)
+      const randomString = Math.floor(1000*Math.random()).toString(16)
+      return  uniqueDateString + randomString
     }
   }
 };

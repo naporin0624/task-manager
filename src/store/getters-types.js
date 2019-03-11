@@ -1,2 +1,4 @@
-export const REMAIN_TASK = "REMAIN_TASK"
-export const DONE_TASK = "DONE_TASK"
+export const ALL_TASK = 'ALL_TASK'
+export const INCOMPLETE_TASK = 'INCOMPLETE_TASK'
+export const PROGRESS_TASK = 'PROGRESS_TASK'
+export const COMPLETED_TASK = 'COMPLETED_TASK'
