@@ -25,7 +25,6 @@ v-app
     v-toolbar-title タスク完了するところ見てて・・・
   
   v-content
-    task-list-view(v-if="isMobile")
     router-view
   
   v-card(height="32" v-if="!isMobile")

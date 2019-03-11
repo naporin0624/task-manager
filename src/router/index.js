@@ -20,12 +20,9 @@ export default new Router({
     name: 'task',
     component: TaskView
   }, {
-    path: '/task/:name',
-    name: 'taskContent',
-    children: [{
-      path: 'detial',
-      component: TaskDetial
-    }]
+    path: '/task/:uid',
+    name: 'taskDetial',
+    component: TaskDetial
   },{
     path: '/calender',
     name: 'calender',

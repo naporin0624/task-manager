@@ -25,5 +25,10 @@ export const getters = {
             return item.status == 2
         })
         return retData
-    }
+    },
+    [types.FIND_ITEM]: (state) => uid => {
+        return state.taskList.find(item => {
+            return item.uid === uid
+        })
+    },
 }

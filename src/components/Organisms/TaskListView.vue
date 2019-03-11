@@ -1,11 +1,6 @@
 <template lang="pug">
   div.wrapper
     v-container(grid-list-xs text-xs-center)
-      v-btn(flat icon @click.end="indexDecrement")
-        v-icon navigate_before
-      span.now-status {{ viewContentList[btnIndex] }}
-      v-btn(flat icon @click.end="indexIncrement")
-        v-icon navigate_next
       transition-group(name="list" mode="in-out")
         task-bar(
           v-for="taskObj in TASK_DATA"
@@ -13,7 +8,7 @@
           :status="taskObj.status" 
           :display="taskObj.display"
           @statclickend="statEvent(taskObj)"
-          @infoclickend="infoEvent(taskObj)"
+          @infoclickend="infoEvent(taskObj.uid)"
         )
 </template>
 
@@ -26,10 +21,11 @@ import TaskBar from '@/components/Molecules/TaskBar'
 
 export default {
   name: 'TaskListView',
-  data () {
-    return {
-      btnIndex: 0,
-      viewContentList: ['全て', '未完', '進行', '完了'],
+  props:{
+    btnIndex: {
+      type: Number,
+      required: true,
+      default: 0
     }
   },
   components: {
@@ -72,25 +68,9 @@ export default {
     statEvent (taskObj) {
       this.TASK_UPDATE(taskObj)
     },
-    infoEvent (key) {
-      console.log('event', key)
+    infoEvent (uid) {
+      this.$emit('infoclickend', uid)
     },
-    indexIncrement () {
-      this.btnIndex = (this.btnIndex + 1) % 4
-      // const targetSize = this.viewContentList.length - 1
-      // if (this.btnIndex == targetSize) {
-      //   this.btnIndex = 0
-      // } else {
-      //   this.btnIndex++
-      // }
-    },
-    indexDecrement () {
-      if (this.btnIndex == 0) {
-        this.btnIndex = 3
-      } else {
-        this.btnIndex--
-      }
-    }
   },
 }
 </script>
