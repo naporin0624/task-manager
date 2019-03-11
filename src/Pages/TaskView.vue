@@ -87,6 +87,7 @@ export default {
 .wrapper {
   position: relative;
   height: 100%;
+  padding-bottom: 56px;
 }
 .task-box {
   padding-top: 32px;
@@ -101,7 +102,6 @@ export default {
 .v-text-field{
 	position: fixed;
 	bottom: 32px;
-  width: 90%;
-  margin-left: 5%;
+  width: 100%;
 }
 </style>

@@ -36,7 +36,7 @@ v-app
     v-spacer
     div © {{ new Date().getFullYear() }}
   
-  v-card(height="56" v-if="isMobile")
+  //- v-card(height="56" v-if="isMobile")
   v-bottom-nav(
     v-if="isMobile"
     :value="true"

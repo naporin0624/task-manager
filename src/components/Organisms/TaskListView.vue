@@ -2,7 +2,7 @@
   div.wrapper
     v-container(grid-list-xs text-xs-center)
       transition-group(name="list" mode="in-out")
-        task-bar(
+        task-bar.list-item(
           v-for="taskObj in TASK_DATA"
           :key="taskObj.uid"
           :status="taskObj.status" 
@@ -80,11 +80,17 @@ export default {
   display: inline-block;
   margin-right: 10px;
 }
-.list-enter-active, .list-leave-active {
+
+.list-item {
   transition: all 1s;
+  display: block;
+  margin-right: 0px;
 }
-.list-enter, .list-leave-to /* .list-leave-active for below version 2.1.8 */ {
+.list-enter, .list-leave-to {
   opacity: 0;
   transform: translateX(100px);
+}
+.list-leave-active {
+  position: absolute;
 }
 </style>
