@@ -4,7 +4,7 @@
     v-on:swipeleft="onSwipeLeft"
     :swipe-options="{ direction: 'horizontal', threshold: 100 }"
   )
-    div.text-xs-center.filter-bar
+    div.text-xs-center.filter-bar(v-if="isMobile")
       v-btn(flat icon @click.end="VIEW_DECREMENT")
         v-icon navigate_before
       span.now-status {{ viewContentList[btnIndex] }}
@@ -70,21 +70,11 @@ export default {
         path: `/task/${uid}`
       });
     },
-    indexIncrement() {
-      this.btnIndex = (this.btnIndex + 1) % 4;
-    },
-    indexDecrement() {
-      if (this.btnIndex == 0) {
-        this.btnIndex = 3;
-      } else {
-        this.btnIndex--;
-      }
-    },
     onSwipeRight() {
-      this.indexDecrement();
+      this.VIEW_DECREMENT();
     },
     onSwipeLeft() {
-      this.indexIncrement();
+      this.VIEW_INCREMENT();
     },
     // sendPreparation() {
     //   this.sendPreparationFlag = true;
