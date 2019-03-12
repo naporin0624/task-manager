@@ -153,14 +153,15 @@ export default {
 
 <style scoped>
 .slide-enter-active, .slide-leave-active {
-  transition: all 0.5s;
+  transition: all 1s;
 }
 .slide-enter {
   opacity: 0;
-  transform: translateX(100%);
+  transform: translateX(25%);
 }
 .slide-leave-to {
-  transform: translateX(-100%);
+  opacity: 0;
+  transform: translateX(-25%);
 }
 .fade-enter-active, .fade-leave-active {
   transition: all 0.5s;
