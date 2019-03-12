@@ -49,7 +49,6 @@ export default {
       textFieldIsActive: false,
       inputText: "",
       // sendPreparationFlag: false,
-      // btnIndex: 1,
       viewContentList: ["ALL", "TODO", "WIP", "DONE"]
     };
   },
