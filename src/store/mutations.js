@@ -14,51 +14,58 @@ export const state = {
     uid: generateUID(),
     status: 0,
     display: 'はじめのたすく',
-    start: new Date().getTime(),
+    create: new Date().getTime(),
   }, {
     uid: generateUID(),
     status: 1,
     display: '少し進んだたすく',
-    start: new Date('2018/1/22').getTime(),
+    create: new Date('2018/1/22').getTime(),
   }, {
     uid: generateUID(),
     status: 2,
     display: '終わったたすく',
-    start: new Date('2018/12/22').getTime(),
+    create: new Date('2018/12/22').getTime(),
   }, {
     uid: generateUID(),
     status: 0,
     display: 'ネストされたたすく',
-    start: new Date('2018/11/22').getTime(),
+    create: new Date('2018/11/22').getTime(),
   }],
   doneAudioList: [],
   redoAudioList: [],
 }
 
 export const mutations = {
-  [types.TASK_INSERT] (state, text) {
+  [types.TASK_INSERT](state, text) {
     const newTask = {
       uid: generateUID(),
       status: 0,
       display: text,
-      start: new Date().getTime(),
+      create: new Date().getTime(),
+      start: null,
+      end: null
     }
     state.taskList.push(newTask)
   },
-  [types.TASK_UPDATE] (state, payload) {
+  [types.TASK_UPDATE](state, payload) {
     // uidからインデックスを検索
     const index = state.taskList.findIndex(item => {
       return item.uid === payload.uid
     })
     // statusを１つ進める
     payload.status = (payload.status + 1) % 3
-    if (payload.status % 3 == 0) {
-      payload.start = new Date().getTime()
-      payload.end = undefined
-    }else if (payload.status % 3 == 2) {
-      payload.end = new Date().getTime()
-    } else {
-      payload.end = undefined
+
+    /*
+     * status:0 TODO
+     * status:1 WIP
+     * status:2 DONE
+     */
+    if (payload.status == 0) {
+      payload.end = null //TODO, endを初期化するにする
+    } else if (payload.status == 1) {
+      payload.start = new Date().getTime() //WIP, 開始時間をtimestampで記録
+    } else if (payload.status == 2) {
+      payload.end = new Date().getTime() //DONE, 終了時間をtimestampで記録
     }
     Vue.set(state.taskList, index, payload)
   }

@@ -13,15 +13,20 @@
 </template>
 
 <script>
-import { mapState, mapMutations, mapGetters } from 'vuex'
-import { TASK_UPDATE } from '@/store/mutation-types.js'
-import { ALL_TASK, INCOMPLETE_TASK, PROGRESS_TASK, COMPLETED_TASK } from '@/store/getters-types.js'
+import { mapState, mapMutations, mapGetters } from "vuex";
+import { TASK_UPDATE } from "@/store/mutation-types.js";
+import {
+  ALL_TASK,
+  INCOMPLETE_TASK,
+  PROGRESS_TASK,
+  COMPLETED_TASK
+} from "@/store/getters-types.js";
 
-import TaskBar from '@/components/Molecules/TaskBar'
+import TaskBar from "@/components/Molecules/TaskBar";
 
 export default {
-  name: 'TaskListView',
-  props:{
+  name: "TaskListView",
+  props: {
     btnIndex: {
       type: Number,
       required: true,
@@ -32,32 +37,27 @@ export default {
     TaskBar
   },
   computed: {
-    ...mapGetters([
-      ALL_TASK,
-      INCOMPLETE_TASK,
-      PROGRESS_TASK,
-      COMPLETED_TASK,
-    ]),
-    TASK_DATA () {
+    ...mapGetters([ALL_TASK, INCOMPLETE_TASK, PROGRESS_TASK, COMPLETED_TASK]),
+    TASK_DATA() {
       switch (this.btnIndex) {
         case 0:
           // return '#424242'
-          return this.ALL_TASK
-          break
+          return this.ALL_TASK;
+          break;
         case 1:
           // return 'blue'
-          return this.INCOMPLETE_TASK
-          break
+          return this.INCOMPLETE_TASK;
+          break;
         case 2:
           // return 'red'
-          return this.PROGRESS_TASK
-          break
+          return this.PROGRESS_TASK;
+          break;
         case 3:
           // return 'green'
-          return this.COMPLETED_TASK
-          break
+          return this.COMPLETED_TASK;
+          break;
         default:
-          return ALL_TASK
+          return ALL_TASK;
       }
     }
   },
@@ -65,14 +65,14 @@ export default {
     ...mapMutations({
       TASK_UPDATE
     }),
-    statEvent (taskObj) {
-      this.TASK_UPDATE(taskObj)
+    statEvent(taskObj) {
+      this.TASK_UPDATE(taskObj);
     },
-    infoEvent (uid) {
-      this.$emit('infoclickend', uid)
-    },
-  },
-}
+    infoEvent(uid) {
+      this.$emit("infoclickend", uid);
+    }
+  }
+};
 </script>
 
 <style scoped>
@@ -86,7 +86,11 @@ export default {
   display: block;
   margin-right: 0px;
 }
-.list-enter, .list-leave-to {
+.list-enter {
+  opacity: 0;
+  transform: translateY(100px);
+}
+.list-leave-to {
   opacity: 0;
   transform: translateX(100px);
 }
