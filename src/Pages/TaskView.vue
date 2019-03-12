@@ -30,7 +30,6 @@
       @keyup.enter="pushTaskData"
       :class="{'default-mode':!textFieldIsActive}"
     )
-    //- @keypress="sendPreparation"
 </template>
 
 <script>
@@ -48,7 +47,6 @@ export default {
     return {
       textFieldIsActive: false,
       inputText: "",
-      // sendPreparationFlag: false,
       viewContentList: ["ALL", "TODO", "WIP", "DONE"]
     };
   },
@@ -76,9 +74,6 @@ export default {
     onSwipeLeft() {
       this.VIEW_INCREMENT();
     },
-    // sendPreparation() {
-    //   this.sendPreparationFlag = true;
-    // },
     unsetFocus() {
       // 現在アクティブな要素を取得する
       const active_element = document.activeElement;
@@ -88,12 +83,10 @@ export default {
       }
     },
     pushTaskData() {
-      // if (this.inputText.length > 0 && this.sendPreparationFlag) {
       if (this.inputText.length > 0) {
         this.TASK_INSERT(this.inputText);
         this.inputText = "";
         this.unsetFocus();
-        // this.sendPreparationFlag = false;
       }
     }
   }
@@ -101,7 +94,6 @@ export default {
 </script>
 
 <style scoped>
-/*FIXME: フォーカス時のv-text-fieldのbottomの調整*/
 .wrapper {
   position: relative;
   height: 100%;
