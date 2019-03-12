@@ -22,10 +22,17 @@ v-app
     flat
     app
   )
+    v-btn(
+      v-if="backBtnIsShow"
+      icon
+      @click.stop="$router.go(-1)"
+    )
+      v-icon arrow_back
     v-toolbar-title タスク完了するところ見てて・・・
   
   v-content
-    router-view
+    transition(:name="transitionName" mode="out-in")
+      router-view
   
   v-card(height="32" v-if="!isMobile")
   v-footer.pa-3(
@@ -36,7 +43,6 @@ v-app
     v-spacer
     div © {{ new Date().getFullYear() }}
   
-  //- v-card(height="56" v-if="isMobile")
   v-bottom-nav(
     v-if="isMobile"
     :value="true"
@@ -57,10 +63,10 @@ v-app
 </template>
 
 <script>
-import TaskListView from '@/components/Organisms/TaskListView'
+import TaskListView from "@/components/Organisms/TaskListView";
 export default {
-  name: 'app',
-  components:{
+  name: "app",
+  components: {
     TaskListView
   },
   data() {
@@ -116,52 +122,50 @@ export default {
             name: "お知らせ"
           }
         ]
-      },
-      taskList: [
-        {
-          uid: this.generateUID(),
-          status: 0,
-          display: 'はじめのたすく'
-        }, {
-          uid: this.generateUID(),
-          status: 1,
-          display: '少し進んだたすく'
-        }, {
-          uid: this.generateUID(),
-          status: 2,
-          display: '終わったたすく'
-        }, {
-          uid: this.generateUID(),
-          status: 0,
-          display: 'ネストされたたすく',
-          child: {
-            uid: this.generateUID(),
-            status: 0,
-            display: 'ネストされたたすく',
-          }
-        }
-      ]
+      }
     };
   },
   computed: {
-    isMobile () {
+    isMobile() {
       return this.$vuetify.breakpoint.smAndDown;
     },
-    fetchSideMenu () {
+    backBtnIsShow () {
+      return this.isMobile && Object.keys(this.$route.params).length　> 0;
+    },
+    transitionName () {
+      if (this.isMobile) {
+        return 'slide'
+      } else {
+        return 'fade'
+      }
+    },
+    fetchSideMenu() {
       const nowRoute = this.$router.history.current.name;
       return this.sideMenuList.home;
     },
-    fetchBottomBtn () {
+    fetchBottomBtn() {
       const nowRoute = this.$router.history.current.name;
       return this.bottomBtnList.home;
-    }
-  },
-  methods: {
-    generateUID () {
-      const uniqueDateString = new Date().getTime().toString(16)
-      const randomString = Math.floor(1000*Math.random()).toString(16)
-      return  uniqueDateString + randomString
     }
   }
 };
 </script>
+
+<style scoped>
+.slide-enter-active, .slide-leave-active {
+  transition: all 0.5s;
+}
+.slide-enter {
+  opacity: 0;
+  transform: translateX(100%);
+}
+.slide-leave-to {
+  transform: translateX(-100%);
+}
+.fade-enter-active, .fade-leave-active {
+  transition: all 0.5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+</style>
