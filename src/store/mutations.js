@@ -10,6 +10,7 @@ const generateUID = () => {
 }
 
 export const state = {
+  taskViewPageIndex: 1,
   taskList: [{
     uid: generateUID(),
     status: 0,
@@ -36,6 +37,16 @@ export const state = {
 }
 
 export const mutations = {
+  [types.VIEW_INCREMENT](state) {
+    state.taskViewPageIndex = (state.taskViewPageIndex + 1) % 4
+  },
+  [types.VIEW_DECREMENT](state) {
+    if (state.taskViewPageIndex == 0) {
+      state.taskViewPageIndex = 3;
+    } else {
+      state.taskViewPageIndex--;
+    }
+  },
   [types.TASK_INSERT](state, text) {
     const newTask = {
       uid: generateUID(),

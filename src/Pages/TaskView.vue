@@ -5,10 +5,10 @@
     :swipe-options="{ direction: 'horizontal', threshold: 100 }"
   )
     div.text-xs-center.filter-bar
-      v-btn(flat icon @click.end="indexDecrement")
+      v-btn(flat icon @click.end="VIEW_DECREMENT")
         v-icon navigate_before
       span.now-status {{ viewContentList[btnIndex] }}
-      v-btn(flat icon @click.end="indexIncrement")
+      v-btn(flat icon @click.end="VIEW_INCREMENT")
         v-icon navigate_next
     div.task-box
       task-list-view(
@@ -34,8 +34,12 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
-import { TASK_INSERT } from "@/store/mutation-types.js";
+import { mapState, mapMutations } from "vuex";
+import {
+  VIEW_INCREMENT,
+  VIEW_DECREMENT,
+  TASK_INSERT
+} from "@/store/mutation-types.js";
 
 import TaskListView from "@/components/Organisms/TaskListView";
 export default {
@@ -45,7 +49,7 @@ export default {
       textFieldIsActive: false,
       inputText: "",
       // sendPreparationFlag: false,
-      btnIndex: 1,
+      // btnIndex: 1,
       viewContentList: ["ALL", "TODO", "WIP", "DONE"]
     };
   },
@@ -53,12 +57,15 @@ export default {
     TaskListView
   },
   computed: {
+    ...mapState({
+      btnIndex: "taskViewPageIndex"
+    }),
     isMobile() {
       return this.$vuetify.breakpoint.smAndDown;
     }
   },
   methods: {
-    ...mapMutations([TASK_INSERT]),
+    ...mapMutations([VIEW_INCREMENT, VIEW_DECREMENT, TASK_INSERT]),
     clickEvent(uid) {
       this.$router.push({
         path: `/task/${uid}`

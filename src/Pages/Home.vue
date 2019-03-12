@@ -25,7 +25,7 @@
 
 <script>
 import { mapState, mapMutations } from "vuex";
-import { CONTENTS_UPDATE } from "@/store/mutation-types.js";
+// import { CONTENTS_UPDATE } from "@/store/mutation-types.js";
 // import contentscomponent from "@/components/Organisms/contents";
 
 export default {
@@ -39,7 +39,7 @@ export default {
     // "contents-component": contentscomponent
   },
   methods: {
-    ...mapMutations({ CONTENTS_UPDATE })
+    // ...mapMutations({ CONTENTS_UPDATE })
   },
   computed: {
     nav: {
