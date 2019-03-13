@@ -129,14 +129,14 @@ export default {
     isMobile() {
       return this.$vuetify.breakpoint.smAndDown;
     },
-    backBtnIsShow () {
-      return this.isMobile && Object.keys(this.$route.params).length　> 0;
+    backBtnIsShow() {
+      return this.isMobile && Object.keys(this.$route.params).length > 0;
     },
-    transitionName () {
+    transitionName() {
       if (this.isMobile) {
-        return 'slide'
+        return "slide";
       } else {
-        return 'fade'
+        return "fade";
       }
     },
     fetchSideMenu() {
@@ -152,7 +152,8 @@ export default {
 </script>
 
 <style scoped>
-.slide-enter-active, .slide-leave-active {
+.slide-enter-active,
+.slide-leave-active {
   transition: all 1s;
 }
 .slide-enter {
@@ -163,10 +164,12 @@ export default {
   opacity: 0;
   transform: translateX(-25%);
 }
-.fade-enter-active, .fade-leave-active {
+.fade-enter-active,
+.fade-leave-active {
   transition: all 0.5s;
 }
-.fade-enter, .fade-leave-to {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }
 </style>
