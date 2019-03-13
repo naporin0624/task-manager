@@ -34,9 +34,8 @@ export default {
   methods: {
     ...mapMutations([TASK_DELETE]),
     deleteClick() {
-      this.$router.push({ path: "/task" });
-      console.log("clickEvent");
-      this.TASK_DELETE(this.uid)
+      this.$router.go(-1);
+      this.TASK_DELETE(this.uid);
     }
   }
 };
