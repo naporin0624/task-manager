@@ -27,9 +27,6 @@ import TaskBar from "@/components/Molecules/TaskBar";
 
 export default {
   name: "TaskListView",
-  created () {
-    console.log(this.chipData)
-  },
   props: {
     btnIndex: {
       type: Number,
@@ -42,7 +39,7 @@ export default {
   },
   computed: {
     ...mapState({
-      chipData: 'displayStatsData'
+      chipData: "displayStatsData"
     }),
     ...mapGetters([ALL_TASK, INCOMPLETE_TASK, PROGRESS_TASK, COMPLETED_TASK]),
     TASK_DATA() {
