@@ -79,5 +79,11 @@ export const mutations = {
       payload.end = new Date().getTime() //DONE, 終了時間をtimestampで記録
     }
     Vue.set(state.taskList, index, payload)
+  },
+  [types.TASK_DELETE] (state, uid) {
+    const deleteTaskIndex = state.taskList.findIndex(Item => {
+      return Item.uid === uid
+    })
+    state.taskList.splice(deleteTaskIndex, 1)
   }
 }
