@@ -80,7 +80,7 @@ export const mutations = {
       return item.uid === payload.uid
     })
     // statusを１つ進める
-    payload.status = (payload.status + 1) % (state.displayStatsData.length - 1)
+    payload.status = (payload.status + 1) % (state.displayStatsData.length)
 
     /*
      * status:0 TODO
