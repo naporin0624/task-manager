@@ -4,7 +4,7 @@
       v-flex(xs3)
         v-chip.cursor(
           :color="chipData[status].color"
-          text-color="white"
+          :text-color="chipData[status].textColor"
           @click.stop="statClickEvent"
         ) {{chipData[status].name}}
       v-flex(
@@ -41,15 +41,18 @@ export default {
       default: () => [
         {
           name: "TODO",
-          color: "blue"
+          color: "blue",
+          textColor: "white"
         },
         {
           name: "WIP",
-          color: "red"
+          color: "red",
+          textColor: "white"
         },
         {
           name: "DONE",
-          color: "green"
+          color: "green",
+          textColor: "white"
         }
       ]
     }

@@ -5,6 +5,7 @@
         task-bar.list-item(
           v-for="taskObj in TASK_DATA"
           :key="taskObj.uid"
+          :chipData="chipData"
           :status="taskObj.status" 
           :display="taskObj.display"
           @statclickend="statEvent(taskObj)"
@@ -26,6 +27,9 @@ import TaskBar from "@/components/Molecules/TaskBar";
 
 export default {
   name: "TaskListView",
+  created () {
+    console.log(this.chipData)
+  },
   props: {
     btnIndex: {
       type: Number,
@@ -37,6 +41,9 @@ export default {
     TaskBar
   },
   computed: {
+    ...mapState({
+      chipData: 'displayStatsData'
+    }),
     ...mapGetters([ALL_TASK, INCOMPLETE_TASK, PROGRESS_TASK, COMPLETED_TASK]),
     TASK_DATA() {
       switch (this.btnIndex) {

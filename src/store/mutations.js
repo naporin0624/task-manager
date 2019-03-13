@@ -11,6 +11,22 @@ const generateUID = () => {
 
 export const state = {
   taskViewFilterIndex: 1,
+  displayStatsData: [{
+      name: "TODO",
+      color: "blue",
+      textColor: "white"
+    },
+    {
+      name: "WIP",
+      color: "red",
+      textColor: "white"
+    },
+    {
+      name: "DONE",
+      color: "green",
+      textColor: "white"
+    }
+  ],
   taskList: [{
     uid: generateUID(),
     status: 0,
@@ -38,13 +54,13 @@ export const state = {
 
 export const mutations = {
   [types.VIEW_INCREMENT](state) {
-    state.taskViewFilterIndex = (state.taskViewFilterIndex + 1) % 4
+    state.taskViewFilterIndex = (state.taskViewFilterIndex + 1) % state.displayStatsData.length
   },
   [types.VIEW_DECREMENT](state) {
     if (state.taskViewFilterIndex == 0) {
-      state.taskViewFilterIndex = 3;
+      state.taskViewFilterIndex = state.displayStatsData.length - 1;
     } else {
-      state.taskViewPageIndex--;
+      state.taskViewFilterIndex--;
     }
   },
   [types.TASK_INSERT](state, text) {
@@ -64,7 +80,7 @@ export const mutations = {
       return item.uid === payload.uid
     })
     // statusを１つ進める
-    payload.status = (payload.status + 1) % 3
+    payload.status = (payload.status + 1) % state.displayStatsData.length - 1
 
     /*
      * status:0 TODO
@@ -80,7 +96,7 @@ export const mutations = {
     }
     Vue.set(state.taskList, index, payload)
   },
-  [types.TASK_DELETE] (state, uid) {
+  [types.TASK_DELETE](state, uid) {
     const deleteTaskIndex = state.taskList.findIndex(Item => {
       return Item.uid === uid
     })
