@@ -1,14 +1,14 @@
 <template lang="pug">
   div.wrapper
     v-layout(align-center justify-space-around row fill-height)
-      v-flex(xs2)
+      v-flex(xs3)
         v-chip.cursor(
           :color="chipData[status].color"
           text-color="white"
           @click.stop="statClickEvent"
         ) {{chipData[status].name}}
       v-flex(
-        xs8
+        xs7
         @click.stop="textClickEvent"
       )
         span.title {{display}}
