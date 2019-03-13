@@ -47,6 +47,26 @@ export const state = {
     status: 0,
     display: 'ネストされたたすく',
     create: new Date('2018/11/22').getTime(),
+  }, {
+    uid: generateUID(),
+    status: 0,
+    display: 'はじめのたすく',
+    create: new Date().getTime(),
+  }, {
+    uid: generateUID(),
+    status: 1,
+    display: '少し進んだたすく',
+    create: new Date('2018/1/22').getTime(),
+  }, {
+    uid: generateUID(),
+    status: 2,
+    display: '終わったたすく',
+    create: new Date('2018/12/22').getTime(),
+  }, {
+    uid: generateUID(),
+    status: 0,
+    display: 'ネストされたたすく',
+    create: new Date('2018/11/22').getTime(),
   }],
   doneAudioList: [],
   redoAudioList: [],
@@ -54,11 +74,11 @@ export const state = {
 
 export const mutations = {
   [types.VIEW_INCREMENT](state) {
-    state.taskViewFilterIndex = (state.taskViewFilterIndex + 1) % state.displayStatsData.length
+    state.taskViewFilterIndex = (state.taskViewFilterIndex + 1) % (state.displayStatsData.length + 1)
   },
   [types.VIEW_DECREMENT](state) {
     if (state.taskViewFilterIndex == 0) {
-      state.taskViewFilterIndex = state.displayStatsData.length - 1;
+      state.taskViewFilterIndex = state.displayStatsData.length;
     } else {
       state.taskViewFilterIndex--;
     }
