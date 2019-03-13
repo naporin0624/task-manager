@@ -55,7 +55,7 @@ export default {
   },
   computed: {
     ...mapState({
-      btnIndex: "taskViewPageIndex"
+      btnIndex: "taskViewFilterIndex"
     }),
     isMobile() {
       return this.$vuetify.breakpoint.smAndDown;
